@@ -1,7 +1,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.types.web_app_info import WebAppInfo
 import time
 
@@ -12,7 +12,7 @@ url = f'https://ilnursh.github.io/web_appss/?v={int(time.time())}'
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
-        keyboard=[
+        inline_keyboard=[
             [KeyboardButton(
                 text='Открыть магазин',
                 web_app=WebAppInfo(url=url)

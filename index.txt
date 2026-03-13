@@ -1,3 +1,4 @@
+обьяснение html кода
 <!doctype html>
 <html lang="ru">
 <head>
@@ -6,6 +7,9 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
+Дефолт код всегда 1 кроме слово шоп там про что у нас веб приложение будет
+
+стили
     <style>
         /* Цвета */
         body {
@@ -80,65 +84,46 @@
             border-color: #db5d5d;
         }
     </style>
+
+сам визуал веб сайта
 </head>
 <body>
     <div id="main">
-        <h1>Онлайн магазин</h1>
-        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p>
-        <button id="buy">Купить</button>
+        <h1>Онлайн магазин</h1> название
+        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png"> сылка на фотку на фоне
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsum magni, molestias.</p> что будет писать снизу
+        <button id="buy">Купить</button> баттон это кнопка
     </div>
+
+форма
     <form id=""from>
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Email" id="user_email">
         <input type="text" placeholder="Телефон" id="user_phone">
-        <div id = "error"></div>
+        <div id = "error"></div> обьект ерор для ошибок
         <button id="order">Оформить</button>
     </form>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+скрипт
+    <script src="https://telegram.org/js/telegram-web-app.js"></script> для работы с тг
     <script>
-        let tg = window.Telegram.WebApp;
-        let buy = document.getElementById("buy");
+        let tg = window.Telegram.WebApp; для работы с тг
+        let buy = document.getElementById("buy");  переменая ищущая кнопку bau order
         let order = document.getElementById("order");
 
+        обработчик событие тоесть при клике будет вызывать анонимную функцию
         buy.addEventListener("click", ()=> {
-            document.getElementById("main").style.display="none";
-            document.getElementById("form").style.display="block";
+                            document.getElementById("error").innerText = " ";     если заново нажимаем на кнопку убираем ошибку и снова вводим данные
+            document.getElementById("main").style.display="none"; будет прятаться
+            document.getElementById("form").style.display="block"; буду показывать другой блок тоесть блок форм
             document.getElementById("user_name").value = tg.initDaraUnsafe.user.first_name + " " + tg.initDaraUnsafe.user.last_name;
+                        обратимс к элементу юзер нэйм к качестве значение будет получать от апи тг имя и фамилию 
+                        при кнопке купить будет в одно поле будет пождставлять данные пользователя 
+                        все значени есть в документации для css html
         })
 
+        обработчик событие аноним функции будет закрываться окошко после кнопки оформить
         order.addEventListener("click", () => {
-                document.getElementById("error").innerText = " ";            
-            let name =  document.getElementById("user_name").value;
-            let email =  document.getElementById("user_name").value;
-            let phone =  document.getElementById("user_name").value;
-
-            if(name.length < 5) {
-                document.getElementById("error").innerText = "Ошибка в имени";
-                return;
-            }
-
-            if(email.length < 5) {
-                document.getElementById("error").innerText = "Ошибка в email";
-                return;
-            }
-
-            if(phone.length < 5) {
-                document.getElementById("error").innerText = "Ошибка в номере телефона";
-                return;
-            }
-
-            let data = {
-                name: name,
-                email: email,
-                phone: phone
-            }
-            tg.sendData(JSON.stringify(data));
-
-
-
-            tg.close();
+            th.close();
         })
     </script>
-</body>
-</html>
