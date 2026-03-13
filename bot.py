@@ -29,12 +29,19 @@ async def cmd_start(message: types.Message):
     await message.answer('Привет! Нажми кнопку, чтобы открыть магазин',reply_markup=keyboard)
 
 
-@dp.message_handler(content_types=['web_app_data'])
+@dp.message()
 async def cms_mebapp(message: types.Message):
-    res = json.loads(message.web_app_data.data)
-    await message.answer(f"Name: {res["name"]}. Email: {res["email"]}. Phone: {res["phone"]}")
-
-
+    # Проверяем, есть ли данные из Web App
+    if message.web_app_data:
+        data = json.loads(message.web_app_data.data)
+        name = data.get('name', 'Не указано')
+        email = data.get('email', 'Не указано')
+        phone = data.get('phone', 'Не указано')
+        
+        await message.answer(f"Name: {name}. Email: {email}. Phone: {phone}")
+    else:
+        # Если это обычное сообщение (не из Web App)
+        await message.answer(f"Ты написал: {message.text}")
 
 
 
