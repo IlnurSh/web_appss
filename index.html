@@ -109,9 +109,9 @@
 
         order.addEventListener("click", () => {
             document.getElementById("error").innerText = " ";            
-            let name =  document.getElementById("user_name").value.trim();
-            let email =  document.getElementById("user_name").value.trim();
-            let phone =  document.getElementById("user_name").value.trim();
+            let name = document.getElementById("user_name").value.trim();
+            let email = document.getElementById("user_email").value.trim(); 
+            let phone = document.getElementById("user_phone").value.trim();  
 
             if(name.length < 5) {
                 document.getElementById("error").innerText = "Ошибка в имени";

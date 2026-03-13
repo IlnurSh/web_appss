@@ -113,7 +113,7 @@
 
         обработчик событие тоесть при клике будет вызывать анонимную функцию
         buy.addEventListener("click", ()=> {
-                            document.getElementById("error").innerText = " ";     если заново нажимаем на кнопку убираем ошибку и снова вводим данные
+            document.getElementById("error").innerText = " ";     если заново нажимаем на кнопку убираем ошибку и снова вводим данные
             document.getElementById("main").style.display="none"; будет прятаться
             document.getElementById("form").style.display="block"; буду показывать другой блок тоесть блок форм
             document.getElementById("user_name").value = tg.initDaraUnsafe.user.first_name + " " + tg.initDaraUnsafe.user.last_name;
@@ -122,8 +122,36 @@
                         все значени есть в документации для css html
         })
 
-        обработчик событие аноним функции будет закрываться окошко после кнопки оформить
         order.addEventListener("click", () => {
-            th.close();
+            кнопки
+            document.getElementById("error").innerText = " ";            
+            let name = document.getElementById("user_name").value.trim();
+            let email = document.getElementById("user_email").value.trim();  отправляем имя емае и номер
+            let phone = document.getElementById("user_phone").value.trim();  
+
+            дефолт обработчики 
+            if(name.length < 5) {
+                document.getElementById("error").innerText = "Ошибка в имени";
+                return;
+            }
+
+            if(email.length < 5  || !email.includes('@')) {
+                document.getElementById("error").innerText = "Ошибка в email";
+                return;
+            }
+
+            if(phone.length < 5) {
+                document.getElementById("error").innerText = "Ошибка в номере телефона";
+                return;
+            }
+
+            данные сохраняются
+            let data = {
+                name: name,
+                email: email,
+                phone: phone
+            }
+            отправляем что мы зарегались
+            tg.sendData(JSON.stringify(data));
         })
     </script>
