@@ -1,23 +1,33 @@
-from aiogram import Bot, Dispatcher, executor, types
+import asyncio
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types.web_app_info import WebAppInfo
 
 
-bot = Bot('8778399471:AAF_UIzAwtlCmZIiA4MNpYe35PizGNxri20')
+bot = Bot(token='8778399471:AAF_UIzAwtlCmZIiA4MNpYe35PizGNxri20')
 dp = Dispatcher()
 
 
-@dp.message_handler(commands=['start'])
+@dp.message(Command('start'))
 async def cmd_start(message: types.Message):
-    markup = types.ReplyKeyboardMarkup()
-    markup.add(types.KeyboardButton('открыть веб страницу', web_app=WebAppInfo(url='https://yandex.ru/search/?text=сверхъестественное+сколько+смотрет&lr=50&clid=11528080')))
-    await message.answer('Привет мой друг', reply_markup=markup)
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(
+                text='Открыть магазин',
+                web_app=WebAppInfo(url='https://ilnursh.github.io/web_appss/')
+            )]
+        ],
+        resize_keyboard=True
+    )
+    
+    await message.answer('Привет! Нажми кнопку, чтобы открыть магазин',reply_markup=keyboard)
 
-    await dp.start_polling(bot)# запускает полинг
-
+async def main():
+    await dp.start_polling(bot)
 
 if __name__ == '__main__':
     try:
-        import asyncio
-        asyncio.run(cmd_start())
+        asyncio.run(main())
     except KeyboardInterrupt:
         print("Бот остановлен")
