@@ -3,11 +3,11 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types.web_app_info import WebAppInfo
-
+import time
 
 bot = Bot(token='8778399471:AAF_UIzAwtlCmZIiA4MNpYe35PizGNxri20')
 dp = Dispatcher()
-
+url = f'https://ilnursh.github.io/web_appss/?v={int(time.time())}'
 
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
@@ -15,7 +15,7 @@ async def cmd_start(message: types.Message):
         keyboard=[
             [KeyboardButton(
                 text='Открыть магазин',
-                web_app=WebAppInfo(url='https://ilnursh.github.io/web_appss/')
+                web_app=WebAppInfo(url=url)
             )]
         ],
         resize_keyboard=True
