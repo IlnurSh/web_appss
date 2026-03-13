@@ -4,6 +4,8 @@ from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.types.web_app_info import WebAppInfo
 import time
+import json
+
 
 bot = Bot(token='8778399471:AAF_UIzAwtlCmZIiA4MNpYe35PizGNxri20')
 dp = Dispatcher()
@@ -25,6 +27,17 @@ async def cmd_start(message: types.Message):
     )
     
     await message.answer('Привет! Нажми кнопку, чтобы открыть магазин',reply_markup=keyboard)
+
+
+@dp.message_handler(content_types=['web_app_data'])
+async def cms_mebapp(message: types.Message):
+    res = json.loads(message.web_app_data.data)
+    await message.answer(f"Name: {res["name"]}. Email: {res["email"]}. Phone: {res["phone"]}")
+
+
+
+
+
 
 async def main():
     await dp.start_polling(bot)
