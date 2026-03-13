@@ -7,10 +7,13 @@ import time
 
 bot = Bot(token='8778399471:AAF_UIzAwtlCmZIiA4MNpYe35PizGNxri20')
 dp = Dispatcher()
-url = f'https://ilnursh.github.io/web_appss/?v={int(time.time())}'
 
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
+
+    cache_buster = int(time.time() * 1000)
+    url = f'https://ilnursh.github.io/web_appss/?v={cache_buster}'
+    
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(
