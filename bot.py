@@ -38,7 +38,7 @@ async def cms_mebapp(message: types.Message):
         email = data.get('email', 'Не указано')
         phone = data.get('phone', 'Не указано')
         
-        await message.answer(f"Name: {name}. Email: {email}. Phone: {phone}")
+        await message.answer(f"Name: {name}\n\n. Email: {email}\n\n. Phone: {phone}")
     else:
         # Если это обычное сообщение (не из Web App)
         await message.answer(f"Ты написал: {message.text}")
