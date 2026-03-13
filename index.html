@@ -104,21 +104,21 @@
         buy.addEventListener("click", ()=> {
             document.getElementById("main").style.display="none";
             document.getElementById("form").style.display="block";
-            document.getElementById("user_name").value = tg.initDaraUnsafe.user.first_name + " " + tg.initDaraUnsafe.user.last_name;
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
         })
 
         order.addEventListener("click", () => {
-                document.getElementById("error").innerText = " ";            
-            let name =  document.getElementById("user_name").value;
-            let email =  document.getElementById("user_name").value;
-            let phone =  document.getElementById("user_name").value;
+            document.getElementById("error").innerText = " ";            
+            let name =  document.getElementById("user_name").value.trim();
+            let email =  document.getElementById("user_name").value.trim();
+            let phone =  document.getElementById("user_name").value.trim();
 
             if(name.length < 5) {
                 document.getElementById("error").innerText = "Ошибка в имени";
                 return;
             }
 
-            if(email.length < 5) {
+            if(email.length < 5  || !email.includes('@')) {
                 document.getElementById("error").innerText = "Ошибка в email";
                 return;
             }

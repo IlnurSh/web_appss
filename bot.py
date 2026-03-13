@@ -12,7 +12,7 @@ url = f'https://ilnursh.github.io/web_appss/?v={int(time.time())}'
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
-        inline_keyboard=[
+        keyboard=[
             [KeyboardButton(
                 text='Открыть магазин',
                 web_app=WebAppInfo(url=url)
