@@ -1,5 +1,5 @@
 import asyncio
-import os  # 👈 ВАЖНО: добавить этот импорт!
+import os 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
@@ -7,10 +7,10 @@ from aiogram.types.web_app_info import WebAppInfo
 import time
 import json
 
-# 👇 Берем токен из переменных окружения Railway
+
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
-# Проверка (для отладки, потом можно убрать)
+
 if not BOT_TOKEN:
     raise ValueError("❌ BOT_TOKEN не найден в переменных окружения!")
 
